@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0d5bd7">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Argo Kerja">
+  <link rel="manifest" href="manifest.webmanifest">
+  <title>Argo Kerja</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="app">
+    <header>
+      <div class="brand">ARGO</div>
+      <button id="settingsBtn" class="iconBtn" aria-label="Pengaturan">⚙︎</button>
+    </header>
+
+    <section class="hero">
+      <div id="statusTitle" class="statusTitle">ARGO</div>
+      <div id="earned" class="earned">¥0</div>
+      <div id="earnedLabel" class="earnedLabel">PENGHASILAN HARI INI</div>
+      <div id="workTime" class="workTime">00:00:00</div>
+      <div id="rate" class="rate">¥1,050 / JAM</div>
+      <div id="detail" class="detail"></div>
+    </section>
+
+    <footer>
+      <div id="clock"></div>
+      <div id="schedule"></div>
+    </footer>
+  </main>
+
+  <dialog id="settings">
+    <form method="dialog" id="settingsForm">
+      <div class="modalHead">
+        <h2>Pengaturan</h2>
+        <button value="cancel" class="closeBtn">×</button>
+      </div>
+
+      <label>Upah per jam (¥)
+        <input id="wage" type="number" min="0" step="1">
+      </label>
+
+      <div class="row">
+        <label>Mulai
+          <input id="workStart" type="time">
+        </label>
+        <label>Selesai
+          <input id="workEnd" type="time">
+        </label>
+      </div>
+
+      <label class="toggleRow">
+        <span>Istirahat otomatis</span>
+        <input id="breakEnabled" type="checkbox">
+      </label>
+
+      <div class="row">
+        <label>Istirahat mulai
+          <input id="breakStart" type="time">
+        </label>
+        <label>Istirahat selesai
+          <input id="breakEnd" type="time">
+        </label>
+      </div>
+
+      <p class="hint">Default: Senin–Jumat, 08:30–17:30, istirahat 12:00–13:00.</p>
+      <button id="saveBtn" value="default" class="saveBtn">Simpan</button>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
