@@ -1,4 +1,4 @@
-const DEFAULTS={wage:1050,workStart:"08:30",workEnd:"17:30",breakEnabled:true,breakStart:"12:00",breakEnd:"13:00"};
+const DEFAULTS={wage:80000,workStart:"08:30",workEnd:"17:30",breakEnabled:true,breakStart:"12:00",breakEnd:"13:00"};
 const KEY="argoKerjaSettings";
 const settings=Object.assign({},DEFAULTS,JSON.parse(localStorage.getItem(KEY)||"{}"));
 const $=id=>document.getElementById(id);
@@ -7,7 +7,7 @@ const dlg=$("settings");
 
 function mins(t){const [h,m]=t.split(":").map(Number);return h*60+m}
 function pad(n){return String(n).padStart(2,"0")}
-function yen(n){return "¥"+Math.floor(Math.max(0,n)).toLocaleString("ja-JP")}
+function yen(n){return "¥"+Math.floor(Math.max(0,n)).toLocaleString("id-ID")}
 function duration(sec){sec=Math.max(0,Math.floor(sec));return `${pad(Math.floor(sec/3600))}:${pad(Math.floor(sec%3600/60))}:${pad(sec%60)}`}
 function todayKey(d){return d.toISOString().slice(0,10)}
 function weekday(d){const n=d.getDay();return n>=1&&n<=5}
@@ -37,9 +37,9 @@ function statusAt(d){
 function render(){
   const now=new Date(), [title,sub,det,state]=statusAt(now), sec=paidSecondsAt(now), money=sec/3600*Number(settings.wage||0);
   app.style.background=state==="work"?"#0d5bd7":state==="break"?"#d11217":"#101114";
-  statusTitle.textContent=title; earned.textContent=yen(money); earnedLabel.textContent=sub;
+  statusTitle.textContent=title; earned.textContent=rupiah(money); earnedLabel.textContent=sub;
   workTime.textContent=state==="work"?duration(sec):duration(sec);
-  rate.textContent=`¥${Number(settings.wage||0).toLocaleString("ja-JP")} / JAM`;
+  rate.textContent=`¥${Number(settings.wage||0).toLocaleString("id-ID")} / JAM`;
   detail.textContent=det;
   clock.textContent=now.toLocaleTimeString("ja-JP",{hour:"2-digit",minute:"2-digit",second:"2-digit"});
   schedule.textContent=`${settings.workStart}–${settings.workEnd}${settings.breakEnabled?"  •  Istirahat "+settings.breakStart+"–"+settings.breakEnd:""}`;
